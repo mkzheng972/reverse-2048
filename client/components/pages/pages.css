@@ -1,0 +1,20 @@
+/* home page */
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* not found */
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-title {
+  text-align: center;
+  font-size: x-large;
+  margin: 2rem;
+}
