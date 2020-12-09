@@ -1,10 +1,13 @@
-## Default boilerplate for React and Express App
+# Default boilerplate for React and Express App
 
 Boiler plate code that is used to build upon to create applications that uses React, Express, and Node
 
 The database is not setup yet; it is up to user discretion on which database to use for their application.
 
 In the client folder you will find there are 3 folders: header, pages, and footer already created.
+
+
+# Installation instructions
 
 Please npm install when opening this app to get all of the requires modules installed.
 

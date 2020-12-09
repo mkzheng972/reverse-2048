@@ -6,6 +6,35 @@
   min-height: 80vh;
 }
 
+/* grid */
+.game-container {
+  background-color: black;
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  margin: 10px;
+}
+
+.grid-cell {
+  width: 22%;
+  height: 90%;
+  background-color: burlywood;
+  margin: 5px;
+}
+
+.grid-row {
+  display: flex;
+  height: 22%;
+  width: 100%;
+}
+
+.grid-container {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
 /* not found */
 
 .not-found {
