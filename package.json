@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "start-dev": "webpack --watch & nodemon server"
+    "start-dev": "NODE_ENV='development' webpack --watch & NODE_ENV='development' nodemon server"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Mark",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.11.1",
     "@babel/plugin-proposal-decorators": "^7.10.5",
