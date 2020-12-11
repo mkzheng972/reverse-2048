@@ -1,4 +1,3 @@
-import e from 'express'
 import React, { useState, useEffect } from 'react'
 import {
   moveUp,
@@ -47,7 +46,6 @@ const Grid = () => {
     // console.log(event.keyCode)
     const keycode = event.keyCode
     if (set.has(keycode)) {
-      // event.preventDefault()
       if (keycode === keyCodeValues.left) {
         console.log('left')
         moveLeft(grid)
