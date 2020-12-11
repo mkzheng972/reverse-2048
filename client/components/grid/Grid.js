@@ -46,6 +46,7 @@ const Grid = () => {
     // console.log(event.keyCode)
     const keycode = event.keyCode
     if (set.has(keycode)) {
+      event.preventDefault() // fixes page scroll when using arrow keys
       if (keycode === keyCodeValues.left) {
         console.log('left')
         moveLeft(grid)
