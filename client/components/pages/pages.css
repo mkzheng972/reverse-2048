@@ -8,18 +8,20 @@
 
 /* grid */
 .game-container {
-  background-color: black;
+  /* background-color: black; */
   height: 500px;
   width: 500px;
   position: absolute;
-  margin: 10px;
 }
 
 .grid-cell {
   width: 22%;
   height: 90%;
   background-color: burlywood;
-  margin: 5px;
+  margin-right: 10px;
+  z-index: 2;
+  text-align: center;
+  font-size: 3rem;
 }
 
 .grid-row {
@@ -33,6 +35,7 @@
   z-index: 1;
   height: 100%;
   width: 100%;
+  margin: 10px;
 }
 
 /* not found */
