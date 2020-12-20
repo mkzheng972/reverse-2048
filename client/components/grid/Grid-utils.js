@@ -10,19 +10,26 @@
   //   }
   // }
 
+  // let initialGrid = [
+  //   [2, null, 2, 4],
+  //   [null, 4, 4, 8],
+  //   [4, null, 4, 8],
+  //   [2, 2, 4, 4],
+  // ]
+
   functions required:
 
   1. move left
   2. move right
   3. move up
   4. move down
-  5. check board if there are any more moves to make
+  5. check board if there are any more moves to make aka empty
   6. if theres an empty cell, randomize cell and add a value in
+  7. initialize grid with two nums at random two cells
 
 
   TODO:
-  - need to initialize the board with 2 random vals
-  - need to add random value into a empty cell
+  - need to initialize the board with 2 or 4
 
   */
 
@@ -200,9 +207,27 @@ export function getEmptyCells(grid) {
   return emptyCells
 }
 
+// only generate random num if the grid changes and grid has empty cells
 export function setRandomNum(grid, emptyCellsArr) {
   let selectedIndex = Math.floor(Math.random() * emptyCellsArr.length)
   let selectedCell = emptyCellsArr[selectedIndex]
   let [row, col] = selectedCell
   grid[row][col] = 2
+}
+
+// perhaps we can pass in the length of the grid if we decide to dynamically set grid length
+export function initializeGrid() {
+  /*
+
+  this function will set two cells to value of 2,
+  need to think of how to set it so the two random values are not the same
+
+  */
+
+  let grid = new Array(4).fill(null).map(() => new Array(4).fill(null))
+  let emptyCells = getEmptyCells(grid)
+  setRandomNum(grid, emptyCells)
+  emptyCells = getEmptyCells(grid)
+  setRandomNum(grid, emptyCells)
+  return grid
 }

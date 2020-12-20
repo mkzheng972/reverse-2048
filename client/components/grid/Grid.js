@@ -7,25 +7,20 @@ import {
   canMove,
   getEmptyCells,
   setRandomNum,
+  initializeGrid,
 } from './Grid-utils'
 
 const Grid = () => {
-  // const grid = new Array(4).fill(0).map((el, index) => new Array(4).fill(null))
-
-  let initialGrid = [
-    [2, null, 2, 4],
-    [null, 4, 4, 8],
-    [4, null, 4, 8],
-    [2, 2, 4, 4],
-  ]
-
   const [grid, setGrid] = useState([])
   const [gridChange, setGridChange] = useState(false)
 
+  // runs at page render, sets initial grid state
   useEffect(() => {
-    setGrid(initialGrid)
+    const newGrid = initializeGrid()
+    setGrid(newGrid)
   }, [])
 
+  // runs when gridChange variable is changes, updates grid state
   useEffect(() => {
     if (gridChange) {
       setGridChange(false)
@@ -46,7 +41,13 @@ const Grid = () => {
     // console.log(event.keyCode)
     const keycode = event.keyCode
     if (set.has(keycode)) {
-      event.preventDefault() // fixes page scroll when using arrow keys
+      // fixes page scroll when using arrow keys
+      event.preventDefault()
+
+      // get str copy of array before change
+      const arrayPreMove = JSON.stringify(grid)
+
+      // check if key that was pressed is in hashmap
       if (keycode === keyCodeValues.left) {
         console.log('left')
         moveLeft(grid)
@@ -61,26 +62,31 @@ const Grid = () => {
         moveDown(grid)
       }
 
-      // scan for empty cells
-      // add a value to any one empty cell
-      // if no empty cels, run canMove to check if there are any moves left
+      // get str copy of array after change
+      const arrayPostMove = JSON.stringify(grid)
 
+      // scan for empty cells
+      // if empty cells exists, set a number to any random cell
+      // if there are no empty cells, run canMove to check if there are any moves possible left
       const emptyCellsArr = getEmptyCells(grid)
 
-      if (emptyCellsArr.length > 0) {
+      // sets num at random cell only if there are empty cells left and the grid changed
+      if (emptyCellsArr.length > 0 && arrayPreMove !== arrayPostMove) {
         setRandomNum(grid, emptyCellsArr)
+
+        // no empty cells
       } else if (emptyCellsArr.length === 0) {
-        // no empty cells, check if there are any valid moves left
-        let checkMove = canMove(grid)
+        // check if there are any valid moves left
+        const checkMove = canMove(grid)
         if (checkMove === false) {
           // end the game
+          // TODO: create a popup, and button that refreshes the box
           console.log('Game Ends')
         }
       }
     }
 
-    // console.log(grid)
-
+    // set gridchange to true to hit the useEffect to re-set grid to new grid
     if (set.has(keycode)) {
       setGridChange(true)
     }
