@@ -100,7 +100,7 @@ const Grid = () => {
 
   return (
     <div>
-      <div className='score'>{score}</div>
+      <div className='score'>Score {score}</div>
       <div className='grid-container' onKeyDown={handleKey} tabIndex={0}>
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>

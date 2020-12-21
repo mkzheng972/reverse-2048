@@ -11,18 +11,21 @@
   /* background-color: black; */
   /* height: 500px;
   width: 500px; */
+  /* position: absolute; */
   height: 70vh;
   width: 90vw;
-  position: absolute;
+  display: flex;
+  justify-content: center;
 }
 
 .grid-container {
   outline: none;
-  position: absolute;
-  z-index: 1;
+  /* position: absolute;
+  z-index: 1; */
   height: 100%;
-  width: 100%;
+  width: 90vw;
   outline: none;
+  max-width: 500px;
 }
 
 .grid-row {
