@@ -1,0 +1,46 @@
+/* score */
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* grid */
+.game-container {
+  /* background-color: black; */
+  /* height: 500px;
+  width: 500px; */
+  height: 70vh;
+  width: 90vw;
+  position: absolute;
+}
+
+.grid-container {
+  outline: none;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.grid-row {
+  display: flex;
+  justify-content: center;
+  height: 22%;
+}
+
+.grid-cell {
+  width: 22%;
+  height: 93%;
+  background-color: burlywood;
+  margin-right: 10px;
+  z-index: 2;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.grid-cell:last-child {
+  margin: 0px;
+}
