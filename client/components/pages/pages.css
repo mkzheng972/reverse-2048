@@ -3,7 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 90vh;
+}
+
+/* score */
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* grid */
@@ -16,7 +23,7 @@
 
 .grid-cell {
   width: 22%;
-  height: 90%;
+  height: 93%;
   background-color: burlywood;
   margin-right: 10px;
   z-index: 2;
@@ -26,16 +33,18 @@
 
 .grid-row {
   display: flex;
-  height: 22%;
+  height: 23%;
   width: 100%;
 }
 
 .grid-container {
+  outline: none;
   position: absolute;
   z-index: 1;
   height: 100%;
   width: 100%;
   margin: 10px;
+  outline: none;
 }
 
 /* not found */

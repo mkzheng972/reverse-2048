@@ -13,6 +13,7 @@ import {
 const Grid = () => {
   const [grid, setGrid] = useState([])
   const [gridChange, setGridChange] = useState(false)
+  const [score, setScore] = useState(0)
 
   // runs at page render, sets initial grid state
   useEffect(() => {
@@ -47,20 +48,24 @@ const Grid = () => {
       // get str copy of array before change
       const arrayPreMove = JSON.stringify(grid)
 
+      let sum = 0
       // check if key that was pressed is in hashmap
       if (keycode === keyCodeValues.left) {
         console.log('left')
-        moveLeft(grid)
+        sum += moveLeft(grid)
       } else if (keycode === keyCodeValues.up) {
         console.log('up')
-        moveUp(grid)
+        sum += moveUp(grid)
       } else if (keycode === keyCodeValues.right) {
         console.log('right')
-        moveRight(grid)
+        sum += moveRight(grid)
       } else if (keycode === keyCodeValues.down) {
         console.log('down')
-        moveDown(grid)
+        sum += moveDown(grid)
       }
+
+      // set the new score
+      setScore(score + sum)
 
       // get str copy of array after change
       const arrayPostMove = JSON.stringify(grid)
@@ -93,16 +98,19 @@ const Grid = () => {
   }
 
   return (
-    <div className='grid-container' onKeyDown={handleKey} tabIndex={0}>
-      {grid.map((row, index) => (
-        <div key={index} className='grid-row'>
-          {row.map((cell, index) => (
-            <div key={index} className='grid-cell'>
-              {cell}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div>
+      <div className='score'>{score}</div>
+      <div className='grid-container' onKeyDown={handleKey} tabIndex={0}>
+        {grid.map((row, index) => (
+          <div key={index} className='grid-row'>
+            {row.map((cell, index) => (
+              <div key={index} className='grid-cell'>
+                {cell}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

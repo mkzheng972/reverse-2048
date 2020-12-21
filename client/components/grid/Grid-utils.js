@@ -27,13 +27,18 @@
   6. if theres an empty cell, randomize cell and add a value in
   7. initialize grid with two nums at random two cells
 
+  needs:
+  sum up the new value to add to the score, the 4 move functions return a sum number
+
 
   TODO:
   - need to initialize the board with 2 or 4
+  - add sum number to the score
 
   */
 
 export function moveLeft(grid) {
+  let sum = 0
   for (let row = 0; row < 4; row++) {
     /*
     p1 = null p2 = null   // do nothing
@@ -53,6 +58,8 @@ export function moveLeft(grid) {
         if (p1 === p2) {
           // the same value
           grid[row][j] *= 2
+          // add the new value to the score
+          sum += grid[row][j]
           grid[row][i] = null
           j += 1
         } else {
@@ -76,9 +83,12 @@ export function moveLeft(grid) {
       }
     }
   }
+
+  return sum
 }
 
 export function moveUp(grid) {
+  let sum = 0
   for (let col = 0; col < 4; col++) {
     let j = 0
     for (let i = 1; i < 4; i++) {
@@ -87,6 +97,7 @@ export function moveUp(grid) {
       if (p1 && p2) {
         if (p1 === p2) {
           grid[j][col] *= 2
+          sum += grid[j][col]
           grid[i][col] = null
           j += 1
         } else {
@@ -102,9 +113,11 @@ export function moveUp(grid) {
       }
     }
   }
+  return sum
 }
 
 export function moveRight(grid) {
+  let sum = 0
   for (let row = 0; row < 4; row++) {
     let j = 3
     for (let i = 2; i >= 0; i--) {
@@ -113,6 +126,7 @@ export function moveRight(grid) {
       if (p1 && p2) {
         if (p1 === p2) {
           grid[row][j] *= 2
+          sum += grid[row][j]
           grid[row][i] = null
           j -= 1
         } else {
@@ -128,9 +142,11 @@ export function moveRight(grid) {
       }
     }
   }
+  return sum
 }
 
 export function moveDown(grid) {
+  let sum = 0
   for (let col = 0; col < 4; col++) {
     let j = 3
     for (let i = 2; i >= 0; i--) {
@@ -139,6 +155,7 @@ export function moveDown(grid) {
       if (p1 && p2) {
         if (p1 === p2) {
           grid[j][col] *= 2
+          sum += grid[j][col]
           grid[i][col] = null
           j -= 1
         } else {
@@ -154,6 +171,7 @@ export function moveDown(grid) {
       }
     }
   }
+  return sum
 }
 
 export function canMove(grid) {
