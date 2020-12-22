@@ -10,10 +10,19 @@
 .not-found {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .not-found-title {
   text-align: center;
   font-size: x-large;
   margin: 2rem;
+  color: #aaabd4;
+}
+
+.not-found-image {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  width: 50%;
 }

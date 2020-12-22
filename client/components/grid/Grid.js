@@ -15,11 +15,17 @@ const Grid = () => {
   const [grid, setGrid] = useState([])
   const [gridChange, setGridChange] = useState(false)
   const [score, setScore] = useState(0)
+  const [topScore, setTopScore] = useState(0)
 
-  // runs at page render, sets initial grid state
+  // runs at first page render, sets initial grid state
   useEffect(() => {
     const newGrid = initializeGrid()
     setGrid(newGrid)
+
+    let savedScore = localStorage.getItem('topScore')
+    if (savedScore) {
+      setTopScore(savedScore)
+    }
   }, [])
 
   // runs when gridChange variable is changes, updates grid state
@@ -65,8 +71,22 @@ const Grid = () => {
         sum += moveDown(grid)
       }
 
+      const currScore = score + sum
       // set the new score
-      setScore(score + sum)
+      setScore(currScore)
+
+      // check localStorage for highest score
+      // localstorage.getitem() is initially set to null
+      if (localStorage.getItem('topScore') === null) {
+        localStorage.setItem('topScore', currScore.toString())
+      } else {
+        const savedTopScore = parseInt(localStorage.getItem('topScore'))
+        // current score is greater than saved top score
+        if (currScore > savedTopScore) {
+          localStorage.setItem('topScore', currScore.toString())
+          setTopScore(currScore)
+        }
+      }
 
       // get str copy of array after change
       const arrayPostMove = JSON.stringify(grid)
@@ -98,9 +118,25 @@ const Grid = () => {
     }
   }
 
+  function newGridClick() {
+    const resetGrid = initializeGrid()
+    setGrid(resetGrid)
+    setGridChange(true)
+  }
+
   return (
     <div>
-      <div className='score'>Score {score}</div>
+      <div className='grid-display'>
+        <div className='score'>Score: {score}</div>
+        <div className='score'>Top Score: {topScore}</div>
+        <button
+          type='button'
+          className='btn btn-primary reset-button'
+          onClick={newGridClick}
+        >
+          New Game
+        </button>
+      </div>
       <div className='grid-container' onKeyDown={handleKey} tabIndex={0}>
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>

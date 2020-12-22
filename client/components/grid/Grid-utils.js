@@ -17,7 +17,7 @@
   //   [2, 2, 4, 4],
   // ]
 
-  functions required:
+  functions required: (things I need to add)
 
   1. move left
   2. move right
@@ -26,6 +26,8 @@
   5. check board if there are any more moves to make aka empty
   6. if theres an empty cell, randomize cell and add a value in
   7. initialize grid with two nums at random two cells
+  8. new game button: resets the grid -> ** (actually this can be done with initialize grid)
+  9. localstorage for top score (no localstroage for react-native)
 
   needs:
   sum up the new value to add to the score, the 4 move functions return a sum number
