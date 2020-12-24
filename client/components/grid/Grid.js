@@ -138,6 +138,16 @@ const Grid = () => {
     console.log('end of handlestart')
   }
 
+  /*
+
+  BELOW works for swipes, but not dry
+  TODO:
+  - fix the sum of points
+  - chrome on mobile does not use local storage
+  - need to make function dry, and not repeat some how
+
+  refer to link for swipe functionality: https://stackoverflow.com/questions/53192433/how-to-detect-swipe-in-javascript
+  */
   function handleTouchEnd(e) {
     console.log('begin of handleTouchEnd')
     e.preventDefault()
