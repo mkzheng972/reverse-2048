@@ -128,15 +128,18 @@ const Grid = () => {
   // const [initialY, setInitialY] = useState(null)
 
   function handleTouchStart(e) {
+    console.log('begin of handlestart')
     initialX = e.touches[0].clientX
     initialY = e.touches[0].clientY
     console.log('e', e)
     console.log('touches', e.touches[0])
     console.log('X', initialX)
     console.log('Y', initialY)
+    console.log('end of handlestart')
   }
 
   function handleTouchEnd(e) {
+    console.log('begin of handleTouchEnd')
     if (initialX === null) {
       return
     }
@@ -177,7 +180,7 @@ const Grid = () => {
 
     initialX = null
     initialY = null
-
+    console.log('end of handleTouchEnd')
     e.preventDefault()
   }
 
@@ -199,7 +202,7 @@ const Grid = () => {
         tabIndex={0}
         onKeyDown={handleKey}
         onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchEnd}
       >
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>
