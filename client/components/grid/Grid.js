@@ -19,8 +19,8 @@ const Grid = () => {
   const [score, setScore] = useState(0)
   const [topScore, setTopScore] = useState(0)
 
-  const [touchStart, setTouchStart] = useState(0)
-  const [touchEnd, setTouchEnd] = useState(0)
+  const initialX = null
+  const initialY = null
 
   // runs at first page render, sets initial grid state
   useEffect(() => {
@@ -50,8 +50,6 @@ const Grid = () => {
   }
 
   function handleKey(event) {
-    // console.log('hit handlekey')
-    // console.log(event.keyCode)
     const keycode = event.keyCode
     if (set.has(keycode)) {
       // fixes page scroll when using arrow keys
@@ -59,9 +57,8 @@ const Grid = () => {
 
       // get str copy of array before change
       const arrayPreMove = JSON.stringify(grid)
-
       let sum = 0
-      // check if key that was pressed is in hashmap
+
       if (keycode === keyCodeValues.left) {
         console.log('left')
         sum += moveLeft(grid)
@@ -93,17 +90,13 @@ const Grid = () => {
 
       // get str copy of array after change
       const arrayPostMove = JSON.stringify(grid)
-
-      // scan for empty cells
-      // if empty cells exists, set a number to any random cell
-      // if there are no empty cells, run canMove to check if there are any moves possible left
       const emptyCellsArr = getEmptyCells(grid)
 
       // sets num at random cell only if there are empty cells left and the grid changed
       if (emptyCellsArr.length > 0 && arrayPreMove !== arrayPostMove) {
         setRandomNum(grid, emptyCellsArr)
 
-        // no empty cells
+        // no more empty cells
       } else if (emptyCellsArr.length === 0) {
         // check if there are any valid moves left
         const checkMove = canMove(grid)
@@ -127,13 +120,64 @@ const Grid = () => {
     setGridChange(true)
   }
 
-  const handleSwipes = useSwipeable({
-    onSwiped: (eventData) => console.log('User Swiped', eventData),
-    onSwipedLeft: () => moveLeft(),
-    onSwipedRight: () => moveRight(),
-    onSwipedUp: () => moveUp(),
-    onSwipedDown: () => moveDown(),
-  })
+  /*
+  TODO: two functions, touchStart and touchEnd
+  */
+
+  let initialX = null
+  let initialY = null
+  // const [initialX, setInitialX] = useState(null)
+  // const [initialY, setInitialY] = useState(null)
+
+  function handleTouchStart(e) {
+    initialX = e.touches[0].clientX
+    initialY = e.touches[0].clientY
+  }
+
+  function handleTouchEnd(e) {
+    if (initialX === null) {
+      return
+    }
+
+    if (initialY === null) {
+      return
+    }
+
+    var currentX = e.touches[0].clientX
+    var currentY = e.touches[0].clientY
+
+    var diffX = initialX - currentX
+    var diffY = initialY - currentY
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      // sliding horizontally
+      if (diffX > 0) {
+        // swiped left
+        console.log('swiped left')
+        moveLeft()
+      } else {
+        // swiped right
+        console.log('swiped right')
+        moveRight()
+      }
+    } else {
+      // sliding vertically
+      if (diffY > 0) {
+        // swiped up
+        console.log('swiped up')
+        moveUp()
+      } else {
+        // swiped down
+        console.log('swiped down')
+        moveDown()
+      }
+    }
+
+    initialX = null
+    initialY = null
+
+    e.preventDefault()
+  }
 
   return (
     <div>
@@ -150,9 +194,10 @@ const Grid = () => {
       </div>
       <div
         className='grid-container'
-        onKeyDown={handleKey}
-        {...handleSwipes}
         tabIndex={0}
+        onKeyDown={handleKey}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>
