@@ -17,6 +17,9 @@ const Grid = () => {
   const [score, setScore] = useState(0)
   const [topScore, setTopScore] = useState(0)
 
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+
   // runs at first page render, sets initial grid state
   useEffect(() => {
     const newGrid = initializeGrid()
@@ -72,11 +75,9 @@ const Grid = () => {
       }
 
       const currScore = score + sum
-      // set the new score
       setScore(currScore)
 
-      // check localStorage for highest score
-      // localstorage.getitem() is initially set to null
+      // check localStorage for highest score, localstorage.getitem() is initially set to null
       if (localStorage.getItem('topScore') === null) {
         localStorage.setItem('topScore', currScore.toString())
       } else {
@@ -118,7 +119,7 @@ const Grid = () => {
     }
   }
 
-  function newGridClick() {
+  function resetGrid() {
     const resetGrid = initializeGrid()
     setGrid(resetGrid)
     setGridChange(true)
@@ -132,7 +133,7 @@ const Grid = () => {
         <button
           type='button'
           className='btn btn-primary reset-button'
-          onClick={newGridClick}
+          onClick={resetGrid}
         >
           New Game
         </button>
