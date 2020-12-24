@@ -11,7 +11,7 @@ import {
   initializeGrid,
 } from './Grid-utils'
 
-import { useSwipeable } from 'react-swipeable'
+import GameEndModal from './GameEndModal'
 
 const Grid = () => {
   const [grid, setGrid] = useState([])
@@ -45,6 +45,8 @@ const Grid = () => {
     right: 39,
     down: 40,
   }
+
+  $('#myModalCenter').modal({ show: true })
 
   function handleKey(event) {
     const keycode = event.keyCode
@@ -101,6 +103,7 @@ const Grid = () => {
           // end the game
           // TODO: create a popup, and button that refreshes the box
           console.log('Game Ends')
+          $('#myModal').modal({ show: true })
         }
       }
     }
@@ -131,11 +134,13 @@ const Grid = () => {
     console.log('begin of handlestart')
     initialX = e.touches[0].clientX
     initialY = e.touches[0].clientY
-    console.log('e', e)
-    console.log('touches', e.touches[0])
-    console.log('X', initialX)
-    console.log('Y', initialY)
-    console.log('end of handlestart')
+    // setInitialX(e.touches[0].clientX)
+    // setInitialY(e.touches[0].clientY)
+    // console.log('e', e)
+    // console.log('touches', e.touches[0])
+    // console.log('X', initialX)
+    // console.log('Y', initialY)
+    // console.log('end of handlestart')
   }
 
   /*
@@ -151,11 +156,7 @@ const Grid = () => {
   function handleTouchEnd(e) {
     console.log('begin of handleTouchEnd')
     e.preventDefault()
-    if (initialX === null) {
-      return
-    }
-
-    if (initialY === null) {
+    if (initialX === null || initialY === null) {
       return
     }
 
@@ -172,53 +173,52 @@ const Grid = () => {
       if (diffX > 0) {
         // swiped left
         console.log('swiped left')
-        moveLeft(grid)
+        sum += moveLeft(grid)
       } else {
         // swiped right
         console.log('swiped right')
-        moveRight(grid)
+        sum += moveRight(grid)
       }
     } else {
       // sliding vertically
       if (diffY > 0) {
         // swiped up
         console.log('swiped up')
-        moveUp(grid)
+        sum += moveUp(grid)
       } else {
         // swiped down
         console.log('swiped down')
-        moveDown(grid)
+        sum += moveDown(grid)
       }
     }
+
+    const currScore = score + sum
+    setScore(currScore)
 
     const arrayPostMove = JSON.stringify(grid)
     const emptyCellsArr = getEmptyCells(grid)
 
-    // sets num at random cell only if there are empty cells left and the grid changed
     if (emptyCellsArr.length > 0 && arrayPreMove !== arrayPostMove) {
       setRandomNum(grid, emptyCellsArr)
-
-      // no more empty cells
     } else if (emptyCellsArr.length === 0) {
-      // check if there are any valid moves left
       const checkMove = canMove(grid)
       if (checkMove === false) {
-        // end the game
-        // TODO: create a popup, and button that refreshes the box
         console.log('Game Ends')
       }
     }
 
     initialX = null
     initialY = null
+    // setInitialX(null)
+    // setInitialY(null)
     setGridChange(true)
-    console.log('end of handleTouchEnd')
     e.preventDefault()
   }
 
   return (
     <div>
       <div className='grid-display'>
+        <GameEndModal />
         <div className='score'>Score: {score}</div>
         <div className='score'>Top Score: {topScore}</div>
         <button
