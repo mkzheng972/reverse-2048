@@ -19,9 +19,6 @@ const Grid = () => {
   const [score, setScore] = useState(0)
   const [topScore, setTopScore] = useState(0)
 
-  const initialX = null
-  const initialY = null
-
   // runs at first page render, sets initial grid state
   useEffect(() => {
     const newGrid = initializeGrid()
@@ -143,11 +140,11 @@ const Grid = () => {
       return
     }
 
-    var currentX = e.touches[0].clientX
-    var currentY = e.touches[0].clientY
+    let currentX = e.touches[0].clientX
+    let currentY = e.touches[0].clientY
 
-    var diffX = initialX - currentX
-    var diffY = initialY - currentY
+    let diffX = initialX - currentX
+    let diffY = initialY - currentY
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
