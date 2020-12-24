@@ -251,9 +251,3 @@ export function initializeGrid() {
   setRandomNum(grid, emptyCells)
   return grid
 }
-
-export function startTouch(e) {
-  const initialX = e.touches[0].clientX
-  const initialY = e.touches[0].clientY
-  return
-}

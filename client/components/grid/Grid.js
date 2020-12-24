@@ -140,6 +140,7 @@ const Grid = () => {
 
   function handleTouchEnd(e) {
     console.log('begin of handleTouchEnd')
+    e.preventDefault()
     if (initialX === null) {
       return
     }
@@ -154,32 +155,53 @@ const Grid = () => {
     let diffX = initialX - currentX
     let diffY = initialY - currentY
 
+    const arrayPreMove = JSON.stringify(grid)
+    let sum = 0
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
       if (diffX > 0) {
         // swiped left
         console.log('swiped left')
-        moveLeft()
+        moveLeft(grid)
       } else {
         // swiped right
         console.log('swiped right')
-        moveRight()
+        moveRight(grid)
       }
     } else {
       // sliding vertically
       if (diffY > 0) {
         // swiped up
         console.log('swiped up')
-        moveUp()
+        moveUp(grid)
       } else {
         // swiped down
         console.log('swiped down')
-        moveDown()
+        moveDown(grid)
+      }
+    }
+
+    const arrayPostMove = JSON.stringify(grid)
+    const emptyCellsArr = getEmptyCells(grid)
+
+    // sets num at random cell only if there are empty cells left and the grid changed
+    if (emptyCellsArr.length > 0 && arrayPreMove !== arrayPostMove) {
+      setRandomNum(grid, emptyCellsArr)
+
+      // no more empty cells
+    } else if (emptyCellsArr.length === 0) {
+      // check if there are any valid moves left
+      const checkMove = canMove(grid)
+      if (checkMove === false) {
+        // end the game
+        // TODO: create a popup, and button that refreshes the box
+        console.log('Game Ends')
       }
     }
 
     initialX = null
     initialY = null
+    setGridChange(true)
     console.log('end of handleTouchEnd')
     e.preventDefault()
   }

@@ -4,3 +4,9 @@
   min-height: 100vh;
   background-color: #272626;
 }
+
+/* Use cases include disabling the pull-to-refresh feature on mobile, removing overscroll glow and rubberbanding effects, and preventing page content from scrolling when it's beneath a modal/overlay. */
+
+body {
+  overscroll-behavior: contain;
+}
