@@ -11,6 +11,8 @@ import {
   initializeGrid,
 } from './Grid-utils'
 
+import { useSwipeable } from 'react-swipeable'
+
 const Grid = () => {
   const [grid, setGrid] = useState([])
   const [gridChange, setGridChange] = useState(false)
@@ -125,6 +127,14 @@ const Grid = () => {
     setGridChange(true)
   }
 
+  const handleSwipes = useSwipeable({
+    onSwiped: (eventData) => console.log('User Swiped', eventData),
+    onSwipedLeft: (eventData) => console.log('User Swiped Left', eventData),
+    onSwipedRight: (eventData) => console.log('User Swiped Right', eventData),
+    onSwipedUp: (eventData) => console.log('User Swiped Up', eventData),
+    onSwipedDown: (eventData) => console.log('User Swiped Down', eventData),
+  })
+
   return (
     <div>
       <div className='grid-display'>
@@ -138,7 +148,12 @@ const Grid = () => {
           New Game
         </button>
       </div>
-      <div className='grid-container' onKeyDown={handleKey} tabIndex={0}>
+      <div
+        className='grid-container'
+        onKeyDown={handleKey}
+        {...handleSwipes}
+        tabIndex={0}
+      >
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>
             {row.map((cell, index) => (
