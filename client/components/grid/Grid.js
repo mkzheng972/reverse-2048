@@ -112,6 +112,7 @@ const Grid = () => {
   }
 
   function resetGrid() {
+    console.log('new game')
     const resetGrid = initializeGrid()
     setGrid(resetGrid)
     setGridChange(true)
@@ -129,6 +130,10 @@ const Grid = () => {
   function handleTouchStart(e) {
     initialX = e.touches[0].clientX
     initialY = e.touches[0].clientY
+    console.log('e', e)
+    console.log('touches', e.touches[0])
+    console.log('X', initialX)
+    console.log('Y', initialY)
   }
 
   function handleTouchEnd(e) {
