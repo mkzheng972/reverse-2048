@@ -129,10 +129,10 @@ const Grid = () => {
 
   const handleSwipes = useSwipeable({
     onSwiped: (eventData) => console.log('User Swiped', eventData),
-    onSwipedLeft: (eventData) => console.log('User Swiped Left', eventData),
-    onSwipedRight: (eventData) => console.log('User Swiped Right', eventData),
-    onSwipedUp: (eventData) => console.log('User Swiped Up', eventData),
-    onSwipedDown: (eventData) => console.log('User Swiped Down', eventData),
+    onSwipedLeft: () => moveLeft(),
+    onSwipedRight: () => moveRight(),
+    onSwipedUp: () => moveUp(),
+    onSwipedDown: () => moveDown(),
   })
 
   return (
