@@ -231,16 +231,17 @@ const Grid = () => {
   return (
     <div className='game-container'>
       <div className='grid-display'>
-        <GameEndModal />
-        <div className='score'>Score: {score}</div>
-        <div className='score'>Top Score: {topScore}</div>
-        <button
-          type='button'
-          className='btn btn-primary reset-button'
-          onClick={resetGrid}
-        >
-          New Game
-        </button>
+        <div className='score grid-display-item'>Score: {score}</div>
+        <div className='score grid-display-item'>Top Score: {topScore}</div>
+        <div className='grid-display-item'>
+          <button
+            type='button'
+            className='btn btn-secondary reset-button'
+            onClick={resetGrid}
+          >
+            New Game
+          </button>
+        </div>
       </div>
       <div
         className='grid-container'
@@ -249,6 +250,7 @@ const Grid = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchEnd}
       >
+        <GameEndModal />
         {grid.map((row, index) => (
           <div key={index} className='grid-row'>
             {row.map((cell, index) => (

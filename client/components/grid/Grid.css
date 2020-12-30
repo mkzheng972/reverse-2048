@@ -3,14 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  color: #5ca3da;
+  /* color: #5ca3da; */
+  color: #99765c;
 }
 
 /* grid */
 .game-container {
-  /* background-color: black; */
-  /* position: absolute; */
   min-height: 70vh;
   width: 500px;
   display: flex;
@@ -20,8 +18,16 @@
 
 .grid-display {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.grid-display-item {
+  width: 33%;
+  display: flex;
+  justify-content: center;
 }
 
 .reset-button {
@@ -29,14 +35,12 @@
 }
 
 .grid-container {
-  /* position: absolute;
-  z-index: 1; */
   background-color: rgb(228, 216, 199);
-  outline: none;
   height: 500px;
   width: 500px;
   padding: 15px;
   border-radius: 5px;
+  outline: none;
   touch-action: none;
 }
 
