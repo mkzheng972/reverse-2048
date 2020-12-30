@@ -1,12 +1,3 @@
-/* score */
-.score {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* color: #5ca3da; */
-  color: #99765c;
-}
-
 /* grid */
 .game-container {
   min-height: 70vh;
@@ -28,6 +19,14 @@
   width: 33%;
   display: flex;
   justify-content: center;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: #5ca3da; */
+  color: #99765c;
 }
 
 .reset-button {
