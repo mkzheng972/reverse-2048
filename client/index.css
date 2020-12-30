@@ -8,10 +8,10 @@
 
 /* Use cases include disabling the pull-to-refresh feature on mobile, removing overscroll glow and rubberbanding effects, and preventing page content from scrolling when it's beneath a modal/overlay. */
 
-body {
+/* body {
   overscroll-behavior: contain;
 }
 
 body.prevent-scroll {
   overflow: hidden;
-}
+} */
