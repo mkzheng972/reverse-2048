@@ -5,9 +5,7 @@ import './pages.css'
 const Homepage = () => {
   return (
     <div className='homepage'>
-      <div className='game-container'>
-        <Grid />
-      </div>
+      <Grid />
     </div>
   )
 }

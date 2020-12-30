@@ -14,7 +14,8 @@
   min-height: 70vh;
   width: 500px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid-display {
@@ -62,4 +63,26 @@
 
 .grid-cell:last-child {
   margin: 0px;
+}
+
+/* media queries for mobile and when width reaches below 600px */
+
+@media only screen and (max-width: 600px) {
+  .grid-container {
+    background-color: lightblue;
+    height: 300px;
+    width: 300px;
+    padding: 9px;
+  }
+
+  .grid-row {
+    margin-bottom: 9px;
+  }
+
+  .grid-cell {
+    height: 63.75px;
+    width: 63.75px;
+    margin-right: 9px;
+    font-size: 2rem;
+  }
 }

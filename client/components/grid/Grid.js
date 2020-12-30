@@ -229,7 +229,7 @@ const Grid = () => {
   }
 
   return (
-    <div>
+    <div className='game-container'>
       <div className='grid-display'>
         <GameEndModal />
         <div className='score'>Score: {score}</div>
