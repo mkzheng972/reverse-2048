@@ -37,6 +37,7 @@
   width: 500px;
   padding: 15px;
   border-radius: 5px;
+  touch-action: none;
 }
 
 .grid-row {
