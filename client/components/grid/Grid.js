@@ -28,6 +28,7 @@ const Grid = () => {
     if (savedScore) {
       setTopScore(savedScore)
     }
+    // $('#myModalCenter').modal({ show: true })
   }, [])
 
   // runs when gridChange variable is changes, updates grid state
@@ -46,8 +47,7 @@ const Grid = () => {
     down: 40,
   }
 
-  $('#myModalCenter').modal({ show: true })
-
+  // for computer inputs
   function handleKey(event) {
     const keycode = event.keyCode
     if (set.has(keycode)) {
@@ -103,7 +103,7 @@ const Grid = () => {
           // end the game
           // TODO: create a popup, and button that refreshes the box
           console.log('Game Ends')
-          $('#myModal').modal({ show: true })
+          $('#myModalCenter').modal({ show: true })
         }
       }
     }
@@ -130,6 +130,7 @@ const Grid = () => {
   // const [initialX, setInitialX] = useState(null)
   // const [initialY, setInitialY] = useState(null)
 
+  // for mobile swipes
   function handleTouchStart(e) {
     console.log('begin of handlestart')
     initialX = e.touches[0].clientX
@@ -195,6 +196,17 @@ const Grid = () => {
     const currScore = score + sum
     setScore(currScore)
 
+    if (localStorage.getItem('topScore') === null) {
+      localStorage.setItem('topScore', currScore.toString())
+    } else {
+      const savedTopScore = parseInt(localStorage.getItem('topScore'))
+      // current score is greater than saved top score
+      if (currScore > savedTopScore) {
+        localStorage.setItem('topScore', currScore.toString())
+        setTopScore(currScore)
+      }
+    }
+
     const arrayPostMove = JSON.stringify(grid)
     const emptyCellsArr = getEmptyCells(grid)
 
@@ -204,6 +216,7 @@ const Grid = () => {
       const checkMove = canMove(grid)
       if (checkMove === false) {
         console.log('Game Ends')
+        $('#myModalCenter').modal({ show: true })
       }
     }
 

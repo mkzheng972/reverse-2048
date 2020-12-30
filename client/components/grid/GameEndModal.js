@@ -22,7 +22,12 @@ const GameEndModal = () => {
               <span aria-hidden='true'>&times;</span>
             </button>
           </div>
-          <div className='modal-body'>Game ends</div>
+          <div
+            className='modal-body'
+            style={{ textAlign: 'center', fontSize: '24px' }}
+          >
+            Game ends
+          </div>
           <div className='modal-footer'>
             <button
               type='button'
@@ -30,9 +35,6 @@ const GameEndModal = () => {
               data-dismiss='modal'
             >
               Close
-            </button>
-            <button type='button' className='btn btn-primary'>
-              Save changes
             </button>
           </div>
         </div>
