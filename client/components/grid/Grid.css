@@ -70,7 +70,6 @@
 }
 
 /* media queries for mobile and when width reaches below 600px */
-
 @media only screen and (max-width: 600px) {
   .grid-container {
     height: 300px;
