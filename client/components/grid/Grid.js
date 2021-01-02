@@ -47,6 +47,11 @@ const Grid = () => {
     down: 40,
   }
 
+  function handleGameEnd() {
+    console.log('Game Ends')
+    $('#myModalCenter').modal({ show: true })
+  }
+
   // for computer inputs
   function handleKey(event) {
     const keycode = event.keyCode
@@ -102,8 +107,7 @@ const Grid = () => {
         if (checkMove === false) {
           // end the game
           // TODO: create a popup, and button that refreshes the box
-          console.log('Game Ends')
-          $('#myModalCenter').modal({ show: true })
+          handleGameEnd()
         }
       }
     }
@@ -115,10 +119,10 @@ const Grid = () => {
   }
 
   function resetGrid() {
-    console.log('new game')
     const resetGrid = initializeGrid()
     setGrid(resetGrid)
     setGridChange(true)
+    setScore(0)
   }
 
   /*
@@ -127,21 +131,12 @@ const Grid = () => {
 
   let initialX = null
   let initialY = null
-  // const [initialX, setInitialX] = useState(null)
-  // const [initialY, setInitialY] = useState(null)
 
   // for mobile swipes
   function handleTouchStart(e) {
     console.log('begin of handlestart')
     initialX = e.touches[0].clientX
     initialY = e.touches[0].clientY
-    // setInitialX(e.touches[0].clientX)
-    // setInitialY(e.touches[0].clientY)
-    // console.log('e', e)
-    // console.log('touches', e.touches[0])
-    // console.log('X', initialX)
-    // console.log('Y', initialY)
-    // console.log('end of handlestart')
   }
 
   /*
@@ -215,15 +210,12 @@ const Grid = () => {
     } else if (emptyCellsArr.length === 0) {
       const checkMove = canMove(grid)
       if (checkMove === false) {
-        console.log('Game Ends')
-        $('#myModalCenter').modal({ show: true })
+        handleGameEnd()
       }
     }
 
     initialX = null
     initialY = null
-    // setInitialX(null)
-    // setInitialY(null)
     setGridChange(true)
     e.preventDefault()
   }
