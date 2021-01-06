@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native'
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures'
 
 import {
   moveUp,
@@ -66,15 +67,12 @@ export default function Grid() {
     // ]
     setGrid(newGrid)
 
-    console.log(newGrid)
-
     // let savedScore = localStorage.getItem('topScore')
     // if (savedScore) {
     //   setTopScore(savedScore)
     // }
   }, [])
 
-  // runs when gridChange variable is changes, updates grid state
   useEffect(() => {
     if (gridChange) {
       setGridChange(false)
@@ -183,25 +181,60 @@ export default function Grid() {
     e.preventDefault()
   }
 
-  // {data.map((datum, index) => (
-  //   // This will render a row for each data element.
-  //   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
-  //     <View style={{ flex: 1, alignSelf: 'stretch' }} />
-  //     {datum}
-  //     {/* Edit these as they are your cells. You may even take parameters to display different data / react elements etc. */}
-  //     <View style={{ flex: 1, alignSelf: 'stretch' }} />
-  //     <View style={{ flex: 1, alignSelf: 'stretch' }} />
-  //     <View style={{ flex: 1, alignSelf: 'stretch' }} />
-  //     <View style={{ flex: 1, alignSelf: 'stretch' }} />
-  //   </View>
-  // ))}
+  function onSwipe(gestureName, gestureState) {
+    const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections
+
+    const arrayPreMove = JSON.stringify(grid)
+    let sum = 0
+
+    switch (gestureName) {
+      case SWIPE_UP:
+        // this.setState({backgroundColor: 'red'});
+        sum += moveUp(grid)
+        console.log('swiped up')
+        break
+      case SWIPE_DOWN:
+        // this.setState({backgroundColor: 'green'});
+        sum += moveDown(grid)
+        console.log('swiped down')
+        break
+      case SWIPE_LEFT:
+        // this.setState({backgroundColor: 'blue'});
+        sum += moveLeft(grid)
+        console.log('swiped left')
+        break
+      case SWIPE_RIGHT:
+        // this.setState({backgroundColor: 'yellow'});
+        sum += moveRight(grid)
+        console.log('swiped right')
+        break
+    }
+
+    const currScore = score + sum
+    setScore(currScore)
+    const arrayPostMove = JSON.stringify(grid)
+    const emptyCellsArr = getEmptyCells(grid)
+
+    if (emptyCellsArr.length > 0 && arrayPreMove !== arrayPostMove) {
+      setRandomNum(grid, emptyCellsArr)
+    } else if (emptyCellsArr.length === 0) {
+      const checkMove = canMove(grid)
+      if (checkMove === false) {
+        handleGameEnd()
+      }
+    }
+
+    setGridChange(true)
+  }
 
   return (
     <View style={styles.container}>
       <Text>This is where the grid will be</Text>
-      {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}> */}
       <View style={styles.gameContainer}>
-        <View style={styles.gridContainer}>
+        <GestureRecognizer
+          style={styles.gridContainer}
+          onSwipe={(direction, state) => onSwipe(direction, state)}
+        >
           {grid.map((row, rowIdx) => (
             <View key={rowIdx} style={styles.gridRow}>
               {row.map((cell, cellIdx) => (
@@ -211,12 +244,12 @@ export default function Grid() {
                     cellIdx === 3 ? styles.gridCellLastChild : styles.gridCell
                   }
                 >
-                  {cell}
+                  <Text style={styles.cellText}>{cell}</Text>
                 </View>
               ))}
             </View>
           ))}
-        </View>
+        </GestureRecognizer>
       </View>
       <StatusBar style='auto' />
     </View>
@@ -230,42 +263,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cellText: {
+    color: '#ffffff',
+  },
   gameContainer: {
+    // flex: 1,
     borderRadius: 10,
   },
   gridCell: {
-    flex: 1,
-    height: 100,
-    width: 100,
+    // flex: 1,
+    height: 70,
+    width: 70,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#333333',
-    color: 'white',
     borderRadius: 5,
     marginRight: 10,
   },
   gridCellLastChild: {
-    flex: 1,
-    height: 100,
-    width: 100,
+    // flex: 1,
+    height: 70,
+    width: 70,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#333333',
-    color: 'white',
     borderRadius: 5,
   },
   gridContainer: {
-    backgroundColor: 'yellow',
+    // flex: 1,
+    backgroundColor: '#fff000',
     borderRadius: 10,
-    // backgroundColor: '#f0e4d3',
-    // outline: none;
-    // touch-action: none;
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
   },
   gridRow: {
+    // flex: 1,
     flexDirection: 'row',
     marginBottom: 10,
   },
