@@ -8,7 +8,7 @@ import Grid from './client/components/grid/Grid'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header />
+      {/* <Header /> */}
       <Grid />
       <StatusBar style='auto' />
     </View>
