@@ -1,21 +1,33 @@
-const router = require('express').Router()
-module.exports = router
+const router = require('express').Router();
+module.exports = router;
+const firebaseUtils = require('../db/firebase.utils');
 
 // test routes
 router.get('/', (req, res, next) => {
-  res.send('Hello World')
-})
+  res.send('Hello World');
+});
 
-router.get('/puppies', (req, res, next) => {
-  res.send('Hello puppies')
-})
+router.get('/scores', async (req, res, next) => {
+  try {
+    let response = await firebaseUtils.getCollection('scores');
+    res.send(response);
+  } catch (error) {
+    next(error);
+  }
+});
 
-router.get('/kittens', (req, res, next) => {
-  res.send('Hello kittens')
-})
+router.post('/scores', async (req, res, next) => {
+  try {
+    let data = req.body;
+    let response = await firebaseUtils.addDocument(data);
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.use((req, res, next) => {
-  const err = new Error('Not found')
-  err.status = 404
-  next(err)
-})
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});

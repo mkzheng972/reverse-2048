@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const GameEndModal = () => {
+const GameEndModal = ({ highestScores }) => {
   return (
     <div
       className='modal fade'
@@ -28,6 +28,21 @@ const GameEndModal = () => {
           >
             Game ends
           </div>
+          <div
+            className='modal-body'
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {highestScores.map((scoreObj, index) => (
+              <div key={index}>{`${index + 1}. ${scoreObj.name}: ${
+                scoreObj.score
+              }`}</div>
+            ))}
+          </div>
           <div className='modal-footer'>
             <button
               type='button'
@@ -40,7 +55,7 @@ const GameEndModal = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default GameEndModal
+export default GameEndModal;
