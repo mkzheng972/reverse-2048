@@ -19,7 +19,7 @@ router.get('/scores', async (req, res, next) => {
 router.post('/scores', async (req, res, next) => {
   try {
     let data = req.body;
-    let response = await firebaseUtils.addDocument(data);
+    await firebaseUtils.addDocument('scores', data);
     res.sendStatus(200);
   } catch (error) {
     next(error);

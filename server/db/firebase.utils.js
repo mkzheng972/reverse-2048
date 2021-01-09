@@ -33,6 +33,8 @@ const addDocument = async (collectionName, data) => {
   specific ID -> use db.collection(collectionName).doc(docId).set(dataObj)
   Behind the scenes, .add(...) and .doc().set(...) are completely equivalent
   */
+
+  console.log(data);
   const collectionRef = db.collection(collectionName);
   const response = await collectionRef.add(data);
   return response;

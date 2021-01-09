@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 /*
 
   // let num = 1
@@ -252,9 +250,4 @@ export function initializeGrid() {
   emptyCells = getEmptyCells(grid);
   setRandomNum(grid, emptyCells);
   return grid;
-}
-
-export async function getHighestScores() {
-  const response = await axios.get('/api/scores');
-  return response.data.sort((a, b) => b.score - a.score).slice(0, 10);
 }

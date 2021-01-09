@@ -4,6 +4,8 @@
   align-items: center;
   height: 10vh;
   width: 100%;
-  position: sticky;
+  position: relative;
   bottom: 0;
+  margin-top: 20px;
+  color: #ffffff;
 }

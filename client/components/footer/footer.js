@@ -1,10 +1,10 @@
 import React from 'react';
-import './footer.css';
+import './Footer.css';
 
 const Footer = () => {
   return (
     <div className='footer'>
-      <div>This is footer</div>
+      <div>Developed by Mark</div>
     </div>
   );
 };

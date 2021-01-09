@@ -9,8 +9,8 @@ import {
   getEmptyCells,
   setRandomNum,
   initializeGrid,
-  getHighestScores,
 } from './Grid-utils';
+import { getHighestScores, addScore } from './Firebase-utils';
 
 import GameEndModal from './GameEndModal';
 
@@ -70,10 +70,9 @@ const Grid = () => {
 
   */
   async function handleGameEnd() {
-    let scores = await getHighestScores();
+    let scores = await getHighestScores(setHighestScores);
     setHighestScores(scores);
     console.log('Game Ends');
-
     $('#myModalCenter').modal({ show: true });
   }
 
@@ -251,7 +250,13 @@ const Grid = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchEnd}
       >
-        <GameEndModal highestScores={highestScores} />
+        <GameEndModal
+          highestScores={highestScores}
+          addScore={addScore}
+          currScore={score}
+          getHighestScores={getHighestScores}
+          setHighestScores={setHighestScores}
+        />
         {grid.map((row, rowIdx) => (
           <div key={rowIdx} className='grid-row'>
             {row.map((cell, cellIdx) => (
