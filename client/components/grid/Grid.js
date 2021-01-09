@@ -34,7 +34,6 @@ const Grid = () => {
     if (savedScore) {
       setTopScore(savedScore);
     }
-    handleGameEnd();
   }, []);
 
   // runs when gridChange variable is changes, updates grid state
