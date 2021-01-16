@@ -19,11 +19,7 @@ const Grid = () => {
   const [gridChange, setGridChange] = useState(false);
   const [score, setScore] = useState(0);
   const [topScore, setTopScore] = useState(0);
-  const [highestScores, setHighestScores] = useState([
-    // { name: 'Mark', score: 100 },
-    // { name: 'Ben', score: 120 },
-    // { name: 'Tom', score: 100 },
-  ]);
+  const [highestScores, setHighestScores] = useState([]);
 
   // runs at first page render, sets initial grid state
   useEffect(() => {
