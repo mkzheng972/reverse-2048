@@ -1,8 +1,8 @@
-const firebase = require('firebase');
+const firebase = require('firebase')
 // Required for side-effects
-require('firebase/firestore');
-// const { firebaseConfig } = require('../../secrets');
-require('dotenv').config();
+require('firebase/auth')
+require('firebase/firestore')
+require('dotenv').config()
 const firebaseConfig = {
   apiKey: process.env.apiKey,
   authDomain: process.env.authDomain,
@@ -11,9 +11,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.messagingSenderId,
   appId: process.env.appId,
   measurementId: process.env.measurementId,
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+}
+firebase.initializeApp(firebaseConfig)
+const db = firebase.firestore()
 
 /*
  **params: collectionName: string
@@ -21,16 +21,16 @@ const db = firebase.firestore();
  */
 const getCollection = async (collectionName) => {
   // response is a snapshot
-  const documents = [];
-  const collectionRef = db.collection(collectionName);
-  const snapshot = await collectionRef.get();
+  const documents = []
+  const collectionRef = db.collection(collectionName)
+  const snapshot = await collectionRef.get()
   snapshot.forEach((doc) => {
-    let obj = doc.data();
-    obj.id = doc.id;
-    documents.push(obj);
-  });
-  return documents;
-};
+    let obj = doc.data()
+    obj.id = doc.id
+    documents.push(obj)
+  })
+  return documents
+}
 
 /*
  **params: collectionName: string, data:object
@@ -43,20 +43,19 @@ const addDocument = async (collectionName, data) => {
   Behind the scenes, .add(...) and .doc().set(...) are completely equivalent
   */
 
-  console.log(data);
-  const collectionRef = db.collection(collectionName);
-  const response = await collectionRef.add(data);
-  return response;
-};
+  const collectionRef = db.collection(collectionName)
+  const response = await collectionRef.add(data)
+  return response
+}
 
 /*
  **params: collectionName: string, documentId: string, data: object
  **return: void
  */
 const updateDocument = async (collectionName, documentId, data) => {
-  const documentRef = db.collection(collectionName).doc(documentId);
-  await documentRef.update(data);
-};
+  const documentRef = db.collection(collectionName).doc(documentId)
+  await documentRef.update(data)
+}
 
 /*
 to update more than one document with matching condition
@@ -70,22 +69,21 @@ https://stackoverflow.com/questions/48947499/can-firestore-update-multiple-docum
  **return: void
  */
 const updateAllFromCollection = async (collectionName, data) => {
-  const collectionRef = db.collection(collectionName);
-
-  const documentIdArr = [];
-  const snapshot = await collectionRef.where('score', '==').get();
+  const collectionRef = db.collection(collectionName)
+  const documentIdArr = []
+  const snapshot = await collectionRef.where('score', '==').get()
   snapshot.forEach((doc) => {
-    documentIdArr.push(doc.id);
-  });
+    documentIdArr.push(doc.id)
+  })
 
   for (let id of documentIdArr) {
-    updateDocument(collectionName, id, data);
+    updateDocument(collectionName, id, data)
   }
-};
+}
 
 module.exports = {
   getCollection,
   addDocument,
   updateDocument,
   updateAllFromCollection,
-};
+}

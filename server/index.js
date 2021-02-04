@@ -7,12 +7,10 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const compression = require('compression')
-const functions = require('firebase-functions')
-const cors = require('cors')
-const admin = require('firebase-admin')
 module.exports = app
 
-admin.initializeApp()
+console.log(process.env.PORT)
+console.log(process.env)
 
 if (process.env.NODE_ENV !== 'production') {
   require('../secrets')
@@ -31,9 +29,6 @@ passport.deserializeUser((id, done) => {
     .then((user) => done(null, user))
     .catch(done)
 })
-
-// Automatically allow cross-origin requests
-app.use(cors({ origin: true }))
 
 // logger for any debugging
 app.use(morgan('dev'))
@@ -93,4 +88,4 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
 })
 
-exports.app = functions.https.onRequest(app)
+
