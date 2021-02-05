@@ -38,7 +38,6 @@ const Grid = () => {
     if (savedScore) {
       setTopScore(savedScore)
     }
-    $('#endModalCenter').modal({ show: true })
   }, [])
 
   // runs when gridChange variable is changes, updates grid state

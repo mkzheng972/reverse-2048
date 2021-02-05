@@ -1,4 +1,7 @@
-/* this firebase set-up is for the web (aka client side) */
+/*
+this firebase set-up is for the web (aka client side)
+from moved here from the server folder
+*/
 
 const firebase = require('firebase')
 // Required for side-effects
