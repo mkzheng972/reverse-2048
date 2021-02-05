@@ -1,3 +1,5 @@
+/* this firebase set-up is for the web (aka client side) */
+
 const firebase = require('firebase')
 // Required for side-effects
 require('firebase/auth')

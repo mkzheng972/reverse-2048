@@ -29,6 +29,18 @@
   color: #ffffff;
 }
 
+.top-scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* color: #5ca3da; */
+  /* color: #3d3d3d; */
+}
+
+.score-item {
+}
+
 .reset-button {
   height: 50%;
 }

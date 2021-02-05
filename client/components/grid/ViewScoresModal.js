@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import './Grid.css'
-import { addScore } from '../Firebase-utils'
+import React from 'react'
+import Scores from '../Scores'
 
-/*
-
-End Game Modal only needs to add current score to score list
-
-*/
-
-const GameEndModal = ({ currScore }) => {
-  const [name, setName] = useState('')
-
-  function handleSubmit() {
-    addScore({ name: name, score: currScore })
-  }
-
+const ViewScoresModal = () => {
   return (
     <div
       className='modal fade'
-      id='endModalCenter'
+      id='scoresModalCenter'
       tabIndex='-1'
       role='dialog'
       aria-labelledby='exampleModalCenterTitle'
@@ -28,7 +15,7 @@ const GameEndModal = ({ currScore }) => {
         <div className='modal-content'>
           <div className='modal-header'>
             <div style={{ textAlign: 'center', fontSize: '24px' }}>
-              Game ends
+              Top Scores
             </div>
             <button
               type='button'
@@ -39,29 +26,6 @@ const GameEndModal = ({ currScore }) => {
               <span aria-hidden='true'>&times;</span>
             </button>
           </div>
-          <form className='modal-body nameInput'>
-            <input
-              id='name'
-              type='text'
-              placeholder='enter name'
-              onChange={(event) => setName(event.target.value)}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '150px',
-              }}
-            ></input>
-            <button
-              type='submit'
-              className='btn btn-secondary reset-button'
-              style={{ marginLeft: '20px' }}
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
-          </form>
           <div
             className='modal-body'
             style={{
@@ -71,7 +35,7 @@ const GameEndModal = ({ currScore }) => {
               alignItems: 'center',
             }}
           >
-            Body
+            <Scores />
           </div>
           <div className='modal-footer'>
             <button
@@ -88,4 +52,4 @@ const GameEndModal = ({ currScore }) => {
   )
 }
 
-export default GameEndModal
+export default ViewScoresModal

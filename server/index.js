@@ -9,9 +9,6 @@ const passport = require('passport')
 const compression = require('compression')
 module.exports = app
 
-console.log(process.env.PORT)
-console.log(process.env)
-
 if (process.env.NODE_ENV !== 'production') {
   require('../secrets')
 }
@@ -87,5 +84,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
 })
-
-
