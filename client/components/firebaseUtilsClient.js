@@ -7,7 +7,7 @@ import firebase from 'firebase'
 // import  for side-effects
 import 'firebase/auth'
 import 'firebase/firestore'
-import { firebaseConfig } from '../../secrets/secrets'
+import { firebaseConfig } from '../config'
 
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
