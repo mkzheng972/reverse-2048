@@ -1,4 +1,3 @@
-/*
 const admin = require('firebase-admin')
 
 const serviceAccount = require('../../secrets/tofe-b19d2-firebase-adminsdk-nkaxj-acf8fae781.json')
@@ -50,5 +49,3 @@ module.exports = {
   getCollection,
   addDocument,
 }
-
-*/

@@ -1,3 +1,4 @@
+/*
 const functions = require('firebase-functions')
 
 // // Create and Deploy Your First Cloud Functions
@@ -49,3 +50,5 @@ app.post('/scores', async (req, res, next) => {
 })
 
 exports.api = functions.https.onRequest(app)
+
+*/
