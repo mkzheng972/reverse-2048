@@ -1,6 +1,6 @@
 const router = require('express').Router()
 module.exports = router
-const { getCollection, addDocument } = require('../db')
+// const { getCollection, addDocument } = require('../db')
 
 // test routes
 router.get('/', (req, res, next) => {
@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 })
 
 /*
-via firebase SDK -- requires blaze payment account
+via firebase SDK -- requires blaze payment accountx
 
 router.get('/scores', async (req, res, next) => {
   try {
