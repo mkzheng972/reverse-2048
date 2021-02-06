@@ -9,9 +9,9 @@ const passport = require('passport')
 const compression = require('compression')
 module.exports = app
 
-if (process.env.NODE_ENV !== 'production') {
-  require('../secrets')
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('../secrets')
+// }
 
 passport.serializeUser((user, done) => {
   try {

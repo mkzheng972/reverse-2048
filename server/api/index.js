@@ -7,6 +7,9 @@ router.get('/', (req, res, next) => {
   res.send('Not found')
 })
 
+/*
+via firebase SDK -- requires blaze payment account
+
 router.get('/scores', async (req, res, next) => {
   try {
     let response = await getCollection('scores')
@@ -26,7 +29,7 @@ router.post('/scores', async (req, res, next) => {
   }
 })
 
-
+*/
 
 router.use((req, res, next) => {
   const err = new Error('Not found')

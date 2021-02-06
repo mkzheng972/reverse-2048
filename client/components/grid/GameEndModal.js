@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Grid.css'
-import { addScore } from '../Firebase-utils'
+// import { addScore } from '../Firebase-utils'
+import { addDocument } from '../firebaseUtilsClient'
 
 /*
 
@@ -12,7 +13,7 @@ const GameEndModal = ({ currScore }) => {
   const [name, setName] = useState('')
 
   function handleSubmit() {
-    addScore({ name: name, score: currScore })
+    addDocument('scores', { name: name, score: currScore })
   }
 
   return (

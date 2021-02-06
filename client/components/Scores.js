@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { getHighestScores, addScore } from './Firebase-utils'
+import { getCollection } from './firebaseUtilsClient'
 
 const Scores = () => {
   const [highestScores, setHighestScores] = useState([])
 
   useEffect(() => {
     async function fetchData() {
-      const scores = await getHighestScores()
-      setHighestScores(scores)
+      const scores = await getCollection('scores')
+      scores.sort((a, b) => b.score - a.score)
+      setHighestScores(scores.slice(0, 10))
     }
     fetchData()
   }, [])
