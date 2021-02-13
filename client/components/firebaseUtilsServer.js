@@ -1,6 +1,6 @@
 /*
-this firebase set-up is for the web (aka client side)
-from moved here from the server folder
+this firebase set-up is written for server, coded for web (aka client side)
+moved here from the server folder
 */
 
 const firebase = require('firebase')

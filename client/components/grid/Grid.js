@@ -13,7 +13,6 @@ import {
 
 import GameEndModal from './GameEndModal'
 import ViewScoresModal from './ViewScoresModal'
-import Scores from '../Scores'
 
 const Grid = () => {
   const [grid, setGrid] = useState([])

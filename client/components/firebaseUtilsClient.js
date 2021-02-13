@@ -1,6 +1,6 @@
 /*
 this firebase set-up is for the web (aka client side)
-from moved here from the server folder
+moved here from the server folder
 */
 
 import firebase from 'firebase'
