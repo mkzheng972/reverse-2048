@@ -8,9 +8,11 @@ router.get('/', (req, res, next) => {
 })
 
 /*
+
 via firebase SDK -- requires blaze payment accountx
 
 lets try it again without the function folder
+
 */
 
 router.get('/scores', async (req, res, next) => {
