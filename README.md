@@ -1,2 +1,2 @@
 # reverse-2048
-Game app reverse of 2048
+2048
